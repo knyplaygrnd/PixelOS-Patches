@@ -1,0 +1,27 @@
+From 261b3cbaa67cfb8e2f2c2665229e3bdcc1d71266 Mon Sep 17 00:00:00 2001
+From: Alexander Winkowski <dereference23@outlook.com>
+Date: Sun, 1 Oct 2023 19:24:22 +0000
+Subject: [PATCH] common: Always run recovery in permissive domain
+
+Permissive recovery domain is now allowed in user builds.
+
+Change-Id: I57711bc63a40c2e941d417489af781bed6ee61fc
+---
+ common/private/recovery.te | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/common/private/recovery.te b/common/private/recovery.te
+index d0cbebb..036415f 100644
+--- a/common/private/recovery.te
++++ b/common/private/recovery.te
+@@ -1,7 +1,5 @@
+ recovery_only(`
+-userdebug_or_eng(`
+ permissive recovery;
+-')
+ 
+ # Custom version
+ get_prop(recovery, custom_version_prop)
+-- 
+2.52.0
+
