@@ -1,0 +1,27 @@
+From c3cf6c2d2f38ab49e77600afa3fe2169a72a9239 Mon Sep 17 00:00:00 2001
+From: Michael Bestas <mkbestas@lineageos.org>
+Date: Thu, 18 Dec 2025 11:12:22 +0200
+Subject: [PATCH] SystemUI: Enable landscape lockscreen flag
+
+This enables a better landscape layout on <600dp devices.
+
+Change-Id: I479f8ccbdea9ff5fb0f50de279c3fd15dfa23b99
+---
+ packages/SystemUI/src/com/android/systemui/flags/Flags.kt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/flags/Flags.kt b/packages/SystemUI/src/com/android/systemui/flags/Flags.kt
+index d1441e703f8b..46d3e0078c0b 100644
+--- a/packages/SystemUI/src/com/android/systemui/flags/Flags.kt
++++ b/packages/SystemUI/src/com/android/systemui/flags/Flags.kt
+@@ -207,7 +207,7 @@ object Flags {
+         sysPropBooleanFlag("persist.wm.debug.shell_transit", default = true)
+
+     // TODO(b/293252410) : Tracking Bug
+-    @JvmField val LOCKSCREEN_ENABLE_LANDSCAPE = unreleasedFlag("lockscreen.enable_landscape")
++    @JvmField val LOCKSCREEN_ENABLE_LANDSCAPE = releasedFlag("lockscreen.enable_landscape")
+
+     // 1200 - predictive back
+     @Keep
+--
+2.34.1

@@ -8,11 +8,11 @@ BASE_URL="https://raw.githubusercontent.com/$GITHUB_USER/$REPO_NAME/$BRANCH"
 
 PATCHES=(
 "bootable_recovery/0001-recovery-Always-consider-builds-to-be-debuggable.patch"
+"frameworks_base/0001-SystemUI-Enable-landscape-lockscreen-flag.patch"
 "device_lineage_sepolicy/0001-common-Always-run-recovery-in-permissive-domain.patch"
 "system_sepolicy/0001-Allow-permissive-domains-on-user-builds-for-recovery.patch"
 "system_sepolicy/0002-Allow-permissive-backuptool-domain-on-user-builds.patch"
 "system_sepolicy/0003-Allow-adb-root-on-user-builds.patch"
-"system_sepolicy/0004-Make-su-domain-permissive-on-user-builds.patch"
 "hardware_qcom-caf_sm8250_display/0001-sdm-hwc-Allow-enabling-doze-mode-support-with-a-prop.patch"
 )
 # --------------
