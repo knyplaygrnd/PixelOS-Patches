@@ -1,0 +1,103 @@
+From c55a79402c4b71f340de665918280cd0c1ffb343 Mon Sep 17 00:00:00 2001
+From: danielml <daniel@danielml.dev>
+Date: Thu, 18 May 2023 19:04:10 +0200
+Subject: [PATCH] sdm: hwc: Allow enabling doze mode support with a property
+ 
+* By default the HWC restricts the doze mode support
+  to the dsi_cmd_mode panel type
+ 
+* This change allows enabling doze for devices that, with
+  other panel types, still support it
+ 
+Change-Id: I50226dbbdd9dcdd947c7a13070eecdd2ec104aaf
+Signed-off-by: danielml <daniel@danielml.dev>
+Signed-off-by: Gustavo Mendes <gusttavo.me@outlook.com>
+---
+ composer/hwc_display.h           | 4 ++++
+ composer/hwc_display_builtin.cpp | 5 +++++
+ composer/hwc_display_builtin.h   | 4 ++++
+ composer/hwc_session.cpp         | 3 ++-
+ include/display_properties.h     | 1 +
+ 5 files changed, 16 insertions(+), 1 deletion(-)
+ 
+diff --git a/composer/hwc_display.h b/composer/hwc_display.h
+index 1172453a59..7685718d91 100644
+--- a/composer/hwc_display.h
++++ b/composer/hwc_display.h
+@@ -265,6 +265,10 @@ class HWCDisplay : public DisplayEventHandler {
+     return false;
+   }
+ 
++  virtual bool HasOverridenDozeMode(void) {
++    return false;
++  }
++
+   virtual bool HasSmartPanelConfig(void) {
+     return false;
+   }
+diff --git a/composer/hwc_display_builtin.cpp b/composer/hwc_display_builtin.cpp
+index e47f3ee3ac..296c7eecc2 100644
+--- a/composer/hwc_display_builtin.cpp
++++ b/composer/hwc_display_builtin.cpp
+@@ -189,6 +189,11 @@ int HWCDisplayBuiltIn::Init() {
+   DebugHandler::Get()->GetProperty(DISABLE_DYNAMIC_FPS, &value);
+   disable_dyn_fps_ = (value == 1);
+ 
++  value = 0;
++  DebugHandler::Get()->GetProperty(OVERRIDE_DOZE_MODE_PROP, &value);
++  override_doze_mode_ = (value == 1);
++  DLOGI("override_doze_mode: %d", override_doze_mode_);
++
+   uint32_t config_index = 0;
+   GetActiveDisplayConfig(&config_index);
+   DisplayConfigVariableInfo attr = {};
+diff --git a/composer/hwc_display_builtin.h b/composer/hwc_display_builtin.h
+index 0f6ca452cc..f860835166 100644
+--- a/composer/hwc_display_builtin.h
++++ b/composer/hwc_display_builtin.h
+@@ -166,6 +166,9 @@ class HWCDisplayBuiltIn : public HWCDisplay, public SyncTask<LayerStitchTaskCode
+   virtual HWC2::Error SetClientTarget(buffer_handle_t target, shared_ptr<Fence> acquire_fence,
+                                       int32_t dataspace, hwc_region_t damage);
+   virtual bool IsSmartPanelConfig(uint32_t config_id);
++  virtual bool HasOverridenDozeMode(void) {
++    return override_doze_mode_;
++  }
+   virtual bool HasSmartPanelConfig(void);
+   virtual int Deinit();
+   virtual bool IsQsyncCallbackNeeded(bool *qsync_enabled, int32_t *refresh_rate,
+@@ -264,6 +267,7 @@ class HWCDisplayBuiltIn : public HWCDisplay, public SyncTask<LayerStitchTaskCode
+   bool disable_dyn_fps_ = false;
+   bool enhance_idle_time_ = false;
+   bool force_reset_validate_ = false;
++  bool override_doze_mode_ = false;
+ 
+   // NULL display
+   DisplayNull display_null_;
+diff --git a/composer/hwc_session.cpp b/composer/hwc_session.cpp
+index 01f9245846..87ded5e6a8 100644
+--- a/composer/hwc_session.cpp
++++ b/composer/hwc_session.cpp
+@@ -1232,7 +1232,8 @@ int32_t HWCSession::GetDozeSupport(hwc2_display_t display, int32_t *out_support)
+     return HWC2_ERROR_NONE;
+   }
+ 
+-  *out_support = hwc_display_[display]->HasSmartPanelConfig() ? 1 : 0;
++  *out_support = hwc_display_[display]->HasOverridenDozeMode() ||
++                 hwc_display_[display]->HasSmartPanelConfig() ? 1 : 0;
+ 
+   return HWC2_ERROR_NONE;
+ }
+diff --git a/include/display_properties.h b/include/display_properties.h
+index 4dbdabba80..7a4916698e 100644
+--- a/include/display_properties.h
++++ b/include/display_properties.h
+@@ -181,6 +181,7 @@
+ #define DISABLE_IDLE_TIME_HDR                DISPLAY_PROP("disable_idle_time_hdr")
+ #define DISABLE_IDLE_TIME_VIDEO              DISPLAY_PROP("disable_idle_time_video")
+ #define DISABLE_CACHE_MANAGER                DISPLAY_PROP("disable_cache_manager")
++#define OVERRIDE_DOZE_MODE_PROP              DISPLAY_PROP("override_doze_mode")
+ // Add all other.properties above
+ // End of property
+ #endif  // __DISPLAY_PROPERTIES_H__
+-- 
+2.34.1

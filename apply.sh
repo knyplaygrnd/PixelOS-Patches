@@ -13,6 +13,7 @@ PATCHES=(
 "system_sepolicy/0002-Allow-permissive-backuptool-domain-on-user-builds.patch"
 "system_sepolicy/0003-Allow-adb-root-on-user-builds.patch"
 "system_sepolicy/0004-Make-su-domain-permissive-on-user-builds.patch"
+"hardware_qcom-caf_sm8250_display/0001-sdm-hwc-Allow-enabling-doze-mode-support-with-a-prop.patch"
 )
 # --------------
 
@@ -24,27 +25,30 @@ for remote_path in "${PATCHES[@]}"; do
     folder=$(dirname "$remote_path")
     file=$(basename "$remote_path")
     target_dir="${folder//_//}"
+    tmp_patch="/tmp/$file"
 
     if [ ! -d "$target_dir" ]; then
         echo "[!] Directory not found: $target_dir"
         continue
     fi
 
-    curl -sL "$BASE_URL/$remote_path" -o "/tmp/$file" || { echo "[!] Download error: $file"; continue; }
+    # Download
+    curl -sL "$BASE_URL/$remote_path" -o "$tmp_patch" || { echo "[!] Download error: $file"; continue; }
 
     cd "$target_dir" || continue
 
-    if git apply --check -R "/tmp/$file" &>/dev/null; then
-        echo "[i] Skipped (Already applied): $file"
-    elif git apply --check "/tmp/$file" &>/dev/null; then
-        git apply "/tmp/$file"
+    # Try applying with git am
+    # We silence output to keep it clean
+    if git am "$tmp_patch" > /dev/null 2>&1; then
         echo "[+] Applied: $file"
     else
-        echo "[-] Failed (Conflict): $file"
+        # If it fails, we must abort to remove the .git/rebase-apply state
+        git am --abort > /dev/null 2>&1
+        echo "[-] Failed (Conflict or already applied): $file"
     fi
 
     cd "$ROOT" || exit
-    rm -f "/tmp/$file"
+    rm -f "$tmp_patch"
 done
 
 echo "[*] Done."
