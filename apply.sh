@@ -8,7 +8,6 @@ BASE_URL="https://raw.githubusercontent.com/$GITHUB_USER/$REPO_NAME/$BRANCH"
 
 PATCHES=(
 "bootable_recovery/0001-recovery-Always-consider-builds-to-be-debuggable.patch"
-"frameworks_base/0001-SystemUI-Enable-landscape-lockscreen-flag.patch"
 "device_lineage_sepolicy/0001-common-Always-run-recovery-in-permissive-domain.patch"
 "system_sepolicy/0001-Allow-permissive-domains-on-user-builds-for-recovery.patch"
 "system_sepolicy/0002-Allow-permissive-backuptool-domain-on-user-builds.patch"
