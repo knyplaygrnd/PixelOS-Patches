@@ -1,0 +1,32 @@
+From 9143ba3aca20f92b01630adb4b1ff39b01c047dd Mon Sep 17 00:00:00 2001
+From: Ionut <ghermanionut96@gmail.com>
+Date: Mon, 31 Mar 2025 21:19:02 +0300
+Subject: [PATCH 1/2] Revert "Make backuptool permissive only in non user
+ builds"
+
+This reverts commit 39373221c7ea679b99a26846b921088d059ee84b.
+---
+ common/private/backuptool.te | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/common/private/backuptool.te b/common/private/backuptool.te
+index b948b61..b670fb0 100644
+--- a/common/private/backuptool.te
++++ b/common/private/backuptool.te
+@@ -1,11 +1,9 @@
+ type backuptool, domain, coredomain;
+ 
++permissive backuptool;
++
+ neverallow {
+     domain
+     -recovery
+     -update_engine
+ } backuptool:process transition;
+-
+-userdebug_or_eng(`
+-    permissive backuptool;
+-')
+-- 
+2.53.0
+

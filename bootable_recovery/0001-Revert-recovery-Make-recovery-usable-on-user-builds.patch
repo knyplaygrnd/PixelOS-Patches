@@ -1,0 +1,32 @@
+From 18fdd041bc5687eaafc65c6c9c8967b614ce183b Mon Sep 17 00:00:00 2001
+From: alternoegraha <noegrahachan@gmail.com>
+Date: Tue, 10 Mar 2026 05:59:44 +0700
+Subject: [PATCH 1/6] Revert "recovery: Make recovery usable on user builds"
+
+This reverts commit 2972fc7f906586bca19917f685080bddc43d34af.
+---
+ recovery.cpp | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/recovery.cpp b/recovery.cpp
+index 1b9dbb8..f351340 100644
+--- a/recovery.cpp
++++ b/recovery.cpp
+@@ -179,8 +179,12 @@ bool ask_to_ab_reboot(Device* device) {
+ }
+ 
+ bool ask_to_continue_unverified(Device* device) {
+-  device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
+-  return yes_no(device, "Signature verification failed", "Install anyway?");
++  if (get_build_type() == "user") {
++    return false;
++  } else {
++    device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
++    return yes_no(device, "Signature verification failed", "Install anyway?");
++  }
+ }
+ 
+ bool ask_to_continue_downgrade(Device* device) {
+-- 
+2.43.0
+

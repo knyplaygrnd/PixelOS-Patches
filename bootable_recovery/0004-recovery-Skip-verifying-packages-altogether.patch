@@ -1,0 +1,34 @@
+From 42b69c9e0703fd7797de6b8aac1528be8b129d00 Mon Sep 17 00:00:00 2001
+From: Pranav Vashi <neobuddy89@gmail.com>
+Date: Sat, 26 Feb 2022 12:43:33 +0530
+Subject: [PATCH 4/6] recovery: Skip verifying packages altogether
+
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+Signed-off-by: Dmitrii <bankersenator@gmail.com>
+---
+ install/install.cpp | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/install/install.cpp b/install/install.cpp
+index cfbf681..ae4487f 100644
+--- a/install/install.cpp
++++ b/install/install.cpp
+@@ -668,13 +668,14 @@ static InstallResult VerifyAndInstallPackage(Package* package, bool* wipe_cache,
+   ui->SetProgressType(RecoveryUI::DETERMINATE);
+   ui->ShowProgress(VERIFICATION_PROGRESS_FRACTION, VERIFICATION_PROGRESS_TIME);
+ 
+-  // Verify package.
++  /*
+   if (!verify_package(package, ui)) {
+     log_buffer->push_back(android::base::StringPrintf("error: %d", kZipVerificationFailure));
+     if (!ui->IsTextVisible() || !ask_to_continue_unverified(ui->GetDevice())) {
+         return INSTALL_CORRUPT;
+     }
+   }
++   */
+ 
+   // Verify and install the contents of the package.
+   ui->Print("Installing update...\n");
+-- 
+2.43.0
+

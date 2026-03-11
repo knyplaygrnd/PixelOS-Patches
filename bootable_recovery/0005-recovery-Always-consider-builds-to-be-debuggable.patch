@@ -1,9 +1,8 @@
-From eaaa4188a7340173f8099e14d8720b7d683fba01 Mon Sep 17 00:00:00 2001
+From 4d16c49c0ceda0cf13c9088fbf14eb7d141ef7d0 Mon Sep 17 00:00:00 2001
 From: Pranav Vashi <neobuddy89@gmail.com>
 Date: Sat, 27 May 2023 14:21:46 +0530
-Subject: [PATCH] recovery: Always consider builds to be debuggable
+Subject: [PATCH 5/6] recovery: Always consider builds to be debuggable
 
-Change-Id: Ibbb2c5bde2e3484305b600539b90c2babb61128e
 Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
 Signed-off-by: Dmitrii <bankersenator@gmail.com>
 ---
@@ -12,7 +11,7 @@ Signed-off-by: Dmitrii <bankersenator@gmail.com>
  2 files changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/recovery.cpp b/recovery.cpp
-index e7e550b1..0eb39150 100644
+index 7fdf292..f4c17fe 100644
 --- a/recovery.cpp
 +++ b/recovery.cpp
 @@ -124,7 +124,7 @@ static bool save_current_log = false;
@@ -25,7 +24,7 @@ index e7e550b1..0eb39150 100644
  
  // Clear the recovery command and prepare to boot a (hopefully working) system,
 diff --git a/recovery_main.cpp b/recovery_main.cpp
-index 3ca5febe..95eb7b23 100644
+index e34e91b..eedd410 100644
 --- a/recovery_main.cpp
 +++ b/recovery_main.cpp
 @@ -70,7 +70,7 @@ static constexpr const char* LOCALE_FILE = "/cache/recovery/last_locale";
@@ -37,7 +36,7 @@ index 3ca5febe..95eb7b23 100644
  }
  
  static bool IsDeviceUnlocked() {
-@@ -493,10 +493,6 @@ int main(int argc, char** argv) {
+@@ -497,10 +497,6 @@ int main(int argc, char** argv) {
      device->RemoveMenuItemForAction(Device::ENTER_RESCUE);
    }
  
@@ -45,9 +44,9 @@ index 3ca5febe..95eb7b23 100644
 -    device->RemoveMenuItemForAction(Device::ENABLE_ADB);
 -  }
 -
-   if (get_build_type() == "user") {
-     device->RemoveMenuItemForAction(Device::WIPE_SYSTEM);
-     device->RemoveMenuItemForAction(Device::MOUNT_SYSTEM);
+   ui->SetBackground(RecoveryUI::NONE);
+   if (show_text) ui->ShowText(true);
+ 
 -- 
-2.52.0
+2.43.0
 

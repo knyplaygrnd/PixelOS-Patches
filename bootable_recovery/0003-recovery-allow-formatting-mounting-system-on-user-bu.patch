@@ -1,0 +1,35 @@
+From 913d8255b31bba1ab12f5662d3fa0db4210e890c Mon Sep 17 00:00:00 2001
+From: Joker-V2 <nipinna0@gmail.com>
+Date: Sat, 30 Apr 2022 07:59:17 +0530
+Subject: [PATCH 3/6] recovery: allow formatting & mounting system on user
+ builds
+
+- Needed to flash MicroG
+
+This reverts commit 4fe5c71f9f92b4558b6a929cb6afa33edbacdc18.
+
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+Signed-off-by: AnierinB <anierin@evolution-x.org>
+---
+ recovery_main.cpp | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/recovery_main.cpp b/recovery_main.cpp
+index 3fdef4e..e34e91b 100644
+--- a/recovery_main.cpp
++++ b/recovery_main.cpp
+@@ -501,11 +501,6 @@ int main(int argc, char** argv) {
+     device->RemoveMenuItemForAction(Device::ENABLE_ADB);
+   }
+ 
+-  if (get_build_type() == "user") {
+-    device->RemoveMenuItemForAction(Device::WIPE_SYSTEM);
+-    device->RemoveMenuItemForAction(Device::MOUNT_SYSTEM);
+-  }
+-
+   ui->SetBackground(RecoveryUI::NONE);
+   if (show_text) ui->ShowText(true);
+ 
+-- 
+2.43.0
+

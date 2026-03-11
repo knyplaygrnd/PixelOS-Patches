@@ -1,19 +1,19 @@
-From e1321b6df3e60d6874dcb0b8cd18373a2fe7266e Mon Sep 17 00:00:00 2001
+From df7c9752993bf1af89aef7f77169841bf62a2729 Mon Sep 17 00:00:00 2001
 From: Alexander Winkowski <dereference23@outlook.com>
 Date: Sun, 1 Oct 2023 18:56:21 +0000
-Subject: [PATCH 1/4] Allow permissive domains on user builds for recovery
+Subject: [PATCH 1/7] Allow permissive domains on user builds for recovery
 
 Change-Id: Icd8fe51d5af74d62219cdb227b3f59952f0a5623
-Signed-off-by: Dmitrii <bankersenator@gmail.com>
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
 ---
  Android.bp | 4 ++++
  1 file changed, 4 insertions(+)
 
 diff --git a/Android.bp b/Android.bp
-index baee15e17..d9f810af8 100644
+index 7c667c8d5..603ea1566 100644
 --- a/Android.bp
 +++ b/Android.bp
-@@ -738,6 +738,10 @@ se_policy_binary {
+@@ -749,6 +749,10 @@ se_policy_binary {
      srcs: [":recovery_sepolicy.cil"],
      stem: "sepolicy",
      recovery: true,
@@ -25,5 +25,5 @@ index baee15e17..d9f810af8 100644
  
  //////////////////////////////////
 -- 
-2.52.0
+2.53.0
 

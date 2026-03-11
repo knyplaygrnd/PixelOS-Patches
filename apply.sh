@@ -7,7 +7,23 @@ BRANCH="sixteen-qpr1"
 BASE_URL="https://raw.githubusercontent.com/$GITHUB_USER/$REPO_NAME/$BRANCH"
 
 PATCHES=(
+"bootable_recovery/0001-Revert-recovery-Make-recovery-usable-on-user-builds.patch"
+"bootable_recovery/0002-recovery-Make-recovery-usable-on-user-builds.patch"
+"bootable_recovery/0003-recovery-allow-formatting-mounting-system-on-user-bu.patch"
+"bootable_recovery/0004-recovery-Skip-verifying-packages-altogether.patch"
+"bootable_recovery/0005-recovery-Always-consider-builds-to-be-debuggable.patch"
+"bootable_recovery/0006-install-Do-not-check-ro.build.tags-on-user-builds.patch"
+"device_lineage_sepolicy/0001-Revert-Make-backuptool-permissive-only-in-non-user-b.patch"
+"device_lineage_sepolicy/0002-common-Always-run-recovery-in-permissive-domain.patch"
+"frameworks_base/0001-SystemUI-Enable-landscape-lockscreen-flag.patch"
 "hardware_qcom-caf_sm8250_display/0001-sdm-hwc-Allow-enabling-doze-mode-support-with-a-prop.patch"
+"system_sepolicy/0001-Allow-permissive-domains-on-user-builds-for-recovery.patch"
+"system_sepolicy/0002-Allow-permissive-backuptool-domain-on-user-builds.patch"
+"system_sepolicy/0003-Allow-adb-root-on-user-builds.patch"
+"system_sepolicy/0004-Make-su-domain-permissive-on-user-builds.patch"
+"system_sepolicy/0005-sepolicy-Allow-system-app-to-access-sysfs_leds.patch"
+"system_sepolicy/0006-sepolicy-Allow-permissive-in-recovery-on-user-builds.patch"
+"system_sepolicy/0007-fixup-Make-su-domain-permissive-on-user-builds.patch"
 )
 # --------------
 

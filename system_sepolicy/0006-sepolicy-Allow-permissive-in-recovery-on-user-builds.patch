@@ -1,0 +1,26 @@
+From 0a726f3bbb736e730a2c54f0d3e075bf025c964b Mon Sep 17 00:00:00 2001
+From: Pranav Vashi <neobuddy89@gmail.com>
+Date: Sat, 8 Oct 2022 09:36:59 +0530
+Subject: [PATCH 6/7] sepolicy: Allow permissive in recovery on user builds
+
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+---
+ build/soong/policy.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/build/soong/policy.go b/build/soong/policy.go
+index 8359acd92..23ff2552c 100644
+--- a/build/soong/policy.go
++++ b/build/soong/policy.go
+@@ -540,7 +540,7 @@ func (c *policyBinary) GenerateAndroidBuildActions(ctx android.ModuleContext) {
+ 	rule.Temporary(bin)
+ 
+ 	// permissive check is performed only in user build (not debuggable).
+-	if !ctx.Config().Debuggable() {
++	if !ctx.Config().Debuggable() && !ctx.InstallInRoot() {
+ 		permissiveDomains := pathForModuleOut(ctx, c.stem()+"_permissive")
+ 		cmd := rule.Command().BuiltTool("sepolicy-analyze").
+ 			Input(bin).
+-- 
+2.53.0
+

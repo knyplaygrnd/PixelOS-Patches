@@ -1,0 +1,46 @@
+From 4962f49982b667467fd45d0642b65ce1c0a6c054 Mon Sep 17 00:00:00 2001
+From: Christian Oder <myself5@carbonrom.org>
+Date: Wed, 16 Sep 2020 02:06:46 +0200
+Subject: [PATCH 2/6] recovery: Make recovery usable on user builds
+
+Remove restrictions introduced for user builds of recovery.
+
+Change-Id: Ib84de6e1fc1d5874a3bd993bd3ec581c07890ef8
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
+---
+ recovery.cpp | 16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
+
+diff --git a/recovery.cpp b/recovery.cpp
+index f351340..7fdf292 100644
+--- a/recovery.cpp
++++ b/recovery.cpp
+@@ -179,21 +179,13 @@ bool ask_to_ab_reboot(Device* device) {
+ }
+ 
+ bool ask_to_continue_unverified(Device* device) {
+-  if (get_build_type() == "user") {
+-    return false;
+-  } else {
+-    device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
+-    return yes_no(device, "Signature verification failed", "Install anyway?");
+-  }
++  device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
++  return yes_no(device, "Signature verification failed", "Install anyway?");
+ }
+ 
+ bool ask_to_continue_downgrade(Device* device) {
+-  if (get_build_type() == "user") {
+-    return false;
+-  } else {
+-    device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
+-    return yes_no(device, "This package will downgrade your system", "Install anyway?");
+-  }
++  device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
++  return yes_no(device, "This package will downgrade your system", "Install anyway?");
+ }
+ 
+ bool ask_to_continue_spl_downgrade(Device* device) {
+-- 
+2.43.0
+

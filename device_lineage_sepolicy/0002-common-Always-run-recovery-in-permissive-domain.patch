@@ -1,7 +1,7 @@
-From 261b3cbaa67cfb8e2f2c2665229e3bdcc1d71266 Mon Sep 17 00:00:00 2001
+From 7fe92363862bfd7716abe3f125b0b42d6ed7db52 Mon Sep 17 00:00:00 2001
 From: Alexander Winkowski <dereference23@outlook.com>
 Date: Sun, 1 Oct 2023 19:24:22 +0000
-Subject: [PATCH] common: Always run recovery in permissive domain
+Subject: [PATCH 2/2] common: Always run recovery in permissive domain
 
 Permissive recovery domain is now allowed in user builds.
 
@@ -23,5 +23,5 @@ index d0cbebb..036415f 100644
  # Custom version
  get_prop(recovery, custom_version_prop)
 -- 
-2.52.0
+2.53.0
 

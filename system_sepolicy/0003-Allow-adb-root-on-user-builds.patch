@@ -1,7 +1,7 @@
-From 6a8cd0d23c333c7a245b0495cfda90ab29e5a8c0 Mon Sep 17 00:00:00 2001
+From 560285c007f10e792cb77a16187c87f60d366073 Mon Sep 17 00:00:00 2001
 From: Alexander Winkowski <dereference23@outlook.com>
 Date: Wed, 3 Jan 2024 13:41:33 +0000
-Subject: [PATCH 3/4] Allow adb root on user builds
+Subject: [PATCH 3/7] Allow adb root on user builds
 
 Change-Id: I90c5e19a67a194488002a4f442c01af6fe36aa05
 Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
@@ -10,10 +10,10 @@ Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
  1 file changed, 2 insertions(+), 5 deletions(-)
 
 diff --git a/private/adbd.te b/private/adbd.te
-index 138c8f51a..3afe07cd6 100644
+index 6bef6f8bf..bf9974ffb 100644
 --- a/private/adbd.te
 +++ b/private/adbd.te
-@@ -11,10 +11,7 @@ domain_auto_trans(adbd, shell_exec, shell)
+@@ -14,10 +14,7 @@ allow adbd self:vsock_socket { create_socket_perms_no_ioctl listen accept };
  # Allow adb to setcon() to tradeinmode.
  allow adbd self:process setcurrent;
  allow adbd adbd_tradeinmode:process dyntransition;
@@ -25,7 +25,7 @@ index 138c8f51a..3afe07cd6 100644
  
  # When 'adb shell' is executed in recovery mode, adbd explicitly
  # switches into shell domain using setcon() because the shell executable
-@@ -224,7 +221,7 @@ allow adbd shell_test_data_file:lnk_file create_file_perms;
+@@ -230,7 +227,7 @@ allow adbd shell_test_data_file:lnk_file create_file_perms;
  neverallow adbd { domain -crash_dump -shell -adbd_tradeinmode }:process transition;
  neverallow adbd {
      domain
@@ -35,5 +35,5 @@ index 138c8f51a..3afe07cd6 100644
      -adbd_tradeinmode
  }:process dyntransition;
 -- 
-2.52.0
+2.53.0
 

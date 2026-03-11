@@ -7,20 +7,21 @@ This enables a better landscape layout on <600dp devices.
 
 Change-Id: I479f8ccbdea9ff5fb0f50de279c3fd15dfa23b99
 ---
+---
  packages/SystemUI/src/com/android/systemui/flags/Flags.kt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/flags/Flags.kt b/packages/SystemUI/src/com/android/systemui/flags/Flags.kt
-index d1441e703f8b..46d3e0078c0b 100644
+index 3f9f4f9ef2f4b..9baccf58d1021 100644
 --- a/packages/SystemUI/src/com/android/systemui/flags/Flags.kt
 +++ b/packages/SystemUI/src/com/android/systemui/flags/Flags.kt
-@@ -207,7 +207,7 @@ object Flags {
-         sysPropBooleanFlag("persist.wm.debug.shell_transit", default = true)
-
+@@ -196,7 +196,7 @@ object Flags {
+     val ALWAYS_SHOW_HOME_CONTROLS_ON_DREAMS = releasedFlag("always_show_home_controls_on_dreams")
+ 
      // TODO(b/293252410) : Tracking Bug
 -    @JvmField val LOCKSCREEN_ENABLE_LANDSCAPE = unreleasedFlag("lockscreen.enable_landscape")
 +    @JvmField val LOCKSCREEN_ENABLE_LANDSCAPE = releasedFlag("lockscreen.enable_landscape")
-
+ 
      // 1200 - predictive back
      @Keep
 --

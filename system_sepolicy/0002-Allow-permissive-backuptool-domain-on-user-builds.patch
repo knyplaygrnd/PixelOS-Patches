@@ -1,20 +1,20 @@
-From 8c9e3a4a007d7ab274121a34e699c67a05c4b81c Mon Sep 17 00:00:00 2001
+From 890f9733880366e4266230f0d9954bbe91c2d9f2 Mon Sep 17 00:00:00 2001
 From: Alexander Winkowski <dereference23@outlook.com>
 Date: Mon, 2 Oct 2023 04:44:30 +0000
-Subject: [PATCH 2/4] Allow permissive backuptool domain on user builds
+Subject: [PATCH 2/7] Allow permissive backuptool domain on user builds
 
 Change-Id: I1ed906927ebdd3e67961c8f63de694c6341af811
-Signed-off-by: Dmitrii <bankersenator@gmail.com>
+Signed-off-by: Pranav Vashi <neobuddy89@gmail.com>
 ---
  Android.bp                | 1 +
  build/soong/compat_cil.go | 1 +
  2 files changed, 2 insertions(+)
 
 diff --git a/Android.bp b/Android.bp
-index d9f810af8..44210b901 100644
+index 603ea1566..62935ddbc 100644
 --- a/Android.bp
 +++ b/Android.bp
-@@ -704,6 +704,7 @@ precompiled_se_policy_binary {
+@@ -715,6 +715,7 @@ precompiled_se_policy_binary {
      required: [
          "sepolicy_neverallows",
      ],
@@ -23,7 +23,7 @@ index d9f810af8..44210b901 100644
  
  // policy for recovery
 diff --git a/build/soong/compat_cil.go b/build/soong/compat_cil.go
-index a2dcc16e0..f68544b80 100644
+index 67d7d042d..363de794c 100644
 --- a/build/soong/compat_cil.go
 +++ b/build/soong/compat_cil.go
 @@ -168,6 +168,7 @@ func (f *compatTestModule) createCompatTestModule(ctx android.LoadHookContext, v
@@ -35,5 +35,5 @@ index a2dcc16e0..f68544b80 100644
  }
  
 -- 
-2.52.0
+2.53.0
 
