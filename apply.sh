@@ -17,6 +17,7 @@ PATCHES=(
 "device_lineage_sepolicy/0002-common-Always-run-recovery-in-permissive-domain.patch"
 "frameworks_base/0001-SystemUI-Enable-landscape-lockscreen-flag.patch"
 "hardware_qcom-caf_sm8250_display/0001-sdm-hwc-Allow-enabling-doze-mode-support-with-a-prop.patch"
+"packages_apps_Settings/0001-Settings-Enable-glanceble-hub-for-all.patch"
 "system_sepolicy/0001-Allow-permissive-domains-on-user-builds-for-recovery.patch"
 "system_sepolicy/0002-Allow-permissive-backuptool-domain-on-user-builds.patch"
 "system_sepolicy/0003-Allow-adb-root-on-user-builds.patch"
@@ -24,6 +25,8 @@ PATCHES=(
 "system_sepolicy/0005-sepolicy-Allow-system-app-to-access-sysfs_leds.patch"
 "system_sepolicy/0006-sepolicy-Allow-permissive-in-recovery-on-user-builds.patch"
 "system_sepolicy/0007-fixup-Make-su-domain-permissive-on-user-builds.patch"
+"vendor_custom/0001-overlay-Enable-UMO-on-the-glanceable-hub-when-media-is.patch"
+"vendor_custom/0002-overlay-Enable-Lockscreen-widgets-settings-on-mobile.patch"
 )
 # --------------
 

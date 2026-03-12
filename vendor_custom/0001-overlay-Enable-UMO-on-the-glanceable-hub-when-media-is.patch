@@ -1,0 +1,25 @@
+From ea79a9ab5ef4eb07b38c60f7399c4d78ea89db71 Mon Sep 17 00:00:00 2001
+From: aswin7469 <aswinas@pixysos.com>
+Date: Mon, 15 Dec 2025 14:52:36 +0530
+Subject: [PATCH] overlay: Enable UMO on the glanceable hub when media is
+ playing for mobile also
+
+Change-Id: Ia113f089114fd1dfd5dbf395b191245c13bc22ba
+Signed-off-by: aswin7469 <aswinas@pixysos.com>
+Signed-off-by: Gustavo Mendes <gusttavo.me@outlook.com>
+---
+ .../frameworks/base/packages/SystemUI/res/values/config.xml  | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 overlay/common/frameworks/base/packages/SystemUI/res/values/config.xml
+
+diff --git a/overlay/common/frameworks/base/packages/SystemUI/res/values/config.xml b/overlay/common/frameworks/base/packages/SystemUI/res/values/config.xml
+new file mode 100644
+index 0000000..5e63731
+--- /dev/null
++++ b/overlay/common/frameworks/base/packages/SystemUI/res/values/config.xml
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <!-- Whether or not to show the UMO on the glanceable hub when media is playing. -->
++    <bool name="config_showUmoOnHub">true</bool>
++</resources>

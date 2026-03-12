@@ -1,0 +1,27 @@
+From fb3f96f7d2033b252e201d7cc8548f9837999e2a Mon Sep 17 00:00:00 2001
+From: angelomds42 <angelomds42@gmail.com>
+Date: Thu, 12 Mar 2026 12:57:36 -0300
+Subject: [PATCH] manifest: Track my gms fork
+
+Change-Id: Icf4f32ac919475a3fcd9fc01f84499a8a82f985a
+Signed-off-by: angelomds42 <angelomds42@gmail.com>
+---
+ snippets/pixelos.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/snippets/pixelos.xml b/snippets/pixelos.xml
+index d021f17..aacd553 100644
+--- a/snippets/pixelos.xml
++++ b/snippets/pixelos.xml
+@@ -82,7 +82,7 @@
+     <linkfile src="extract-all.sh" dest="vendor/pixel/extract-all.sh" />
+   </project>
+   <project path="vendor/pixel/clocks" name="PixelOS-AOSP/proprietary_vendor_pixel_clocks" remote="gitlab" />
+-  <project path="vendor/pixel/gms" name="PixelOS-AOSP/proprietary_vendor_pixel_gms-16.2" remote="gitlab" />
++  <project path="vendor/pixel/gms" name="angelomds42/proprietary_vendor_pixel_gms-16.2" remote="gitlab" />
+   <project path="vendor/pixel/gsans" name="PixelOS-AOSP/proprietary_vendor_pixel_gsans" remote="gitlab" />
+   <project path="vendor/pixel/launcher" name="PixelOS-AOSP/proprietary_vendor_pixel_launcher" remote="gitlab" />
+   <project path="vendor/pixel/sounds" name="PixelOS-AOSP/proprietary_vendor_pixel_sounds" remote="gitlab" />
+-- 
+2.53.0
+
